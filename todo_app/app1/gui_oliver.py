@@ -9,6 +9,8 @@ list_box = sg.Listbox(
 )
 
 buttons = sg.Column([[sg.Button("Edit")], [sg.Button("Delete")]])
+# edit_button = sg.Button("Edit")
+# delete_button = sg.Button("Delete")
 
 window = sg.Window(
     "My To-Do App",
