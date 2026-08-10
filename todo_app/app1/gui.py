@@ -9,10 +9,11 @@ list_box = sg.Listbox(
 )
 
 buttons = sg.Column([[sg.Button("Edit")], [sg.Button("Delete")]])
+layout = [[label], [input_box, add_button], [list_box, buttons]]
 
 window = sg.Window(
     "My To-Do App",
-    layout=[[label], [input_box, add_button], [list_box, buttons]],
+    layout=layout,
     font=("Helvetica", 16),
 )
 

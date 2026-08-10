@@ -12,10 +12,12 @@ label2 = sg.Text("Enter inches:")
 input_box2 = sg.InputText(key="inches")
 
 convert_button = sg.Button("Convert")
+output_label = sg.Text(key="output", text_color="cyan")
 
 
 window = sg.Window(
-    "Converter", layout=[[label1, input_box1], [label2, input_box2], [convert_button]]
+    "Converter",
+    layout=[[label1, input_box1], [label2, input_box2], [convert_button, output_label]],
 )
 
 
@@ -30,8 +32,9 @@ while True:
         inches = float(values["inches"])
 
         meters = feet_inches_to_meters(feet, inches)
+        window["output"].update(value=f"{meters:.3f} m")
 
-        sg.popup(f"{feet} ft and {inches} in = {meters:.3f} m")
+        # sg.popup(f"{feet} ft and {inches} in = {meters:.3f} m")
 
         # Clear the input boxes after popup is closed
         window["feet"].update("")
