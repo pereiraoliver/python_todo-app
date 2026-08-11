@@ -24,9 +24,8 @@ window = sg.Window(
 while True:
     event, values = window.read()
 
-    match event:
-        case sg.WIN_CLOSED:
-            break
+    if event == sg.WIN_CLOSED:
+        break
 
     print(event, values)
 
