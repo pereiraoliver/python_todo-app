@@ -13,6 +13,7 @@ choose_button2 = sg.FolderBrowse("Choose", key="folder")
 
 extract_button = sg.Button("Extract")
 output_label = sg.Text(key="output", text_color="cyan")
+exit_button = sg.Button("Exit")
 
 
 window = sg.Window(
@@ -20,7 +21,7 @@ window = sg.Window(
     layout=[
         [label1, input1, choose_button1],
         [label2, input2, choose_button2],
-        [extract_button, output_label],
+        [extract_button, exit_button, output_label],
     ],
 )
 
@@ -34,18 +35,16 @@ while True:
         case "Extract":
             zip_file = values["zip_file"]
             folder = values["folder"]
-
             if not zip_file:
                 window["output"].update(value="Please select a ZIP file.")
                 continue
-
             if not folder:
                 window["output"].update(value="Please select a destination folder.")
                 continue
-
             extract_archive(zip_file, folder)
-
             window["output"].update(value="Extraction completed!")
+        case "Exit":
+            break
 
 
 window.close()
