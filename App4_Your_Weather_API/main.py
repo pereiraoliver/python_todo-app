@@ -20,5 +20,21 @@ def about(station, date):
     return {"station": station, "date": date, "temperature": temperature}
 
 
+@app.route("/api/v1/<station>")
+def stations(station):
+    filename = f"downloads/data_small/TG_STAID{str(station).zfill(6)}.txt"
+    df = pd.read_csv(filename, skiprows=20, parse_dates=["    DATE"])
+    return df.to_dict(orient="records")
+
+
+@app.route("/api/v1/yearly/<station>/<year>")
+def station(station, year):
+    filename = f"downloads/data_small/TG_STAID{str(station).zfill(6)}.txt"
+    df = pd.read_csv(filename, skiprows=20)
+    df["    DATE"] = df["    DATE"].astype(str)
+    result = df[df["    DATE"].str.startswith(str(year))].to_dict(orient="records")
+    return result
+
+
 if __name__ == "__main__":
     app.run(debug=True, port=5000)
